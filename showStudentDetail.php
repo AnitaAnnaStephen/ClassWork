@@ -16,6 +16,7 @@ echo "<p>Email: ".$student->getEmail()."</p>";
 echo "<p>Date of Birth: ".$student->getDob()->format('d-m-Y')."</p>";
 echo "<p><a href=\"AddResult.php?id=".$student->getId()."\">Add Result</a></p>";
 echo "<p><a href=\"showAllStudents.php\">Show All Students</a></p>";
+echo "<p><a href=\"showAllResults.php?id=".$student->getStudentId()."\">Show All Results</a></p>";
 
 require_once("footer.php");
 

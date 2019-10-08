@@ -18,7 +18,7 @@ class Result{
         $this->grade=$grade;
     }
     //helper methods
-    public static function create($mysqli, $assessmentid, $sid, $score, $grade){
+    public static function create($mysqli, $sid, $assessmentid,  $score, $grade){
         // create a new result record in results table and if successful 
         // create a result object and return it otherwise return false;
         $result = false;
@@ -37,9 +37,19 @@ class Result{
 
     }
 
-    public static function getAll($mysqli)
+    public static function getAll($mysqli,$sid)
     {
-
+      $sql = "select * from results where SId=".$sid;
+      $qresult = $mysqli->query($sql);    
+      $results = false;
+      if ($qresult){
+        $results = new Collection();
+        while($row = $qresult->fetch_assoc()){
+          $result = new Result($row['Id'], $row['SId'], $row['AssessmentId'], $row['Score'], $row['Grade']);
+          $results->Add($row['Id'], $result);      
+        }    
+      }
+      return $results; 
     }
 
     // ------ setter methods -------
@@ -65,8 +75,12 @@ class Result{
     return $this->assessmentid;
   }
 
-  public function getId(){
+  public function getSId(){    
     return $this->sid;
+  }
+
+  public function getId(){
+    return $this->Id;
   }
   
   public function getScore(){    
