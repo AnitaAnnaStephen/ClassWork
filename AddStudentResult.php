@@ -9,6 +9,7 @@ if (is_null($newResult)){
 } else {
     echo "<p>Results added</p>";
     echo "<p><a href=\"showallStudents.php\">show all students</a></p>";
+    echo "<p><a href=\"showAllResults.php?id=".$_POST['studentId']."\">Show All Results</a></p>";
 }
 
 
